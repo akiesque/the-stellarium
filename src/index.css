@@ -45,6 +45,17 @@
     --sidebar-accent-foreground: 220 20% 10%;
     --sidebar-border: 40 10% 82%;
     --sidebar-ring: 38 90% 55%;
+
+    --nav-text: 220 10% 34%;
+    --nav-hover-text: 165 45% 26%;
+    --nav-hover-bg: 160 40% 92%;
+    --nav-active-text: 165 55% 22%;
+    --nav-active-bg: 160 45% 86%;
+    --nav-active-border: 160 35% 74%;
+
+    --button-border: 40 10% 78%;
+    --button-bg: 0 0% 100%;
+    --button-hover-bg: 160 40% 93%;
   }
 }
 
@@ -84,6 +95,17 @@
 
     --border: 220 15% 18%;
     --input: 220 15% 18%;
+
+    --nav-text: 40 10% 70%;
+    --nav-hover-text: 160 55% 84%;
+    --nav-hover-bg: 160 35% 18%;
+    --nav-active-text: 160 65% 90%;
+    --nav-active-bg: 160 35% 22%;
+    --nav-active-border: 160 25% 38%;
+
+    --button-border: 220 15% 24%;
+    --button-bg: 220 18% 12%;
+    --button-hover-bg: 160 30% 18%;
 
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));

@@ -16,7 +16,9 @@ type TabId = (typeof tabs)[number]["id"];
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<TabId>("home");
+  const [hoveredTab, setHoveredTab] = useState<TabId | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const highlightedTab = hoveredTab ?? activeTab;
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", isDarkMode);
@@ -32,34 +34,49 @@ const Index = () => {
       <nav className="sticky top-0 z-50 border-b overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="container max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
           <span className="font-display text-lg font-bold tracking-tight">
-            the stellarium<span className="text-primary">.</span>
+            the <span className="text-primary text-teal-600">stellarium</span>
+            <span className="text-primary">.</span>
           </span>
-
-          <div className="flex items-center gap-1">
+          <div
+            className="flex items-center gap-1"
+            onMouseLeave={() => setHoveredTab(null)}
+          >
             {tabs.map((tab) => (
               <motion.button
                 whileHover={{
-                  backgroundColor: "#b2bb7d",
-                  transition: { duration: 0.2 },
+                  transition: { ease: [0, 0.71, 0.2, 1.01] },
                 }}
-                transition={{ duration: 0.2 }}
+                whileTap={{ scale: 0.9 }}
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-2 ${
+                onMouseEnter={() => setHoveredTab(tab.id)}
+                onFocus={() => setHoveredTab(tab.id)}
+                className={`relative px-4 py-2 text-sm font-medium rounded-lg flex items-center gap-2 transition-colors duration-200 ${
                   activeTab === tab.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-[hsl(var(--nav-active-text))]"
+                    : "text-[hsl(var(--nav-text))] hover:text-[hsl(var(--nav-hover-text))]"
                 }`}
               >
-                <tab.icon className="w-4 h-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
-                {activeTab === tab.id && (
+                {highlightedTab === tab.id && (
                   <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 rounded-lg bg-primary/10"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                    layoutId="tabHighlight"
+                    className="absolute inset-0 rounded-lg border"
+                    style={{
+                      backgroundColor:
+                        activeTab === tab.id
+                          ? "hsl(var(--nav-active-bg) / 0.9)"
+                          : isDarkMode
+                            ? "hsl(var(--nav-hover-bg) / 0.9)"
+                            : "hsl(var(--nav-hover-bg) / 0.95)",
+                      borderColor: "hsl(var(--nav-active-border) / 0.9)",
+                    }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                   />
                 )}
+                <tab.icon className="relative z-10 w-4 h-4" />
+                <span className="relative z-10 hidden sm:inline">
+                  {tab.label}
+                </span>
               </motion.button>
             ))}
           </div>

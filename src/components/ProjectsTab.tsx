@@ -53,7 +53,8 @@ const ProjectsTab = () => {
       transition={{ duration: 0.5 }}
     >
       <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
-        Selected <span className="text-primary">Projects</span>
+        Selected{" "}
+        <span className="text-[hsl(var(--nav-active-text))]">Projects</span>
       </h2>
       <p className="text-muted-foreground mb-10 max-w-lg">
         A curated collection of things I've built. Each one taught me something
@@ -71,14 +72,18 @@ const ProjectsTab = () => {
             key={project.title}
             href={project.link}
             variants={item}
-            whileHover={{ y: -4 }}
-            className="group block rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary/40"
+            whileHover={{
+              y: -6,
+              scale: 1.01,
+              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+            }}
+            className="group block rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:border-[hsl(var(--nav-active-border))] hover:bg-[hsl(var(--nav-hover-bg)/0.55)] hover:shadow-[0_16px_34px_-20px_hsl(var(--nav-active-bg))]"
           >
             <div className="flex items-start justify-between mb-3">
-              <h3 className="font-display text-xl font-semibold group-hover:text-primary transition-colors">
+              <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-[hsl(var(--nav-active-text))]">
                 {project.title}
               </h3>
-              <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0 mt-1" />
+              <ExternalLink className="w-4 h-4 text-muted-foreground transition-colors group-hover:text-[hsl(var(--nav-active-text))] shrink-0 mt-1" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
               {project.description}
@@ -87,7 +92,7 @@ const ProjectsTab = () => {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground font-medium"
+                  className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground font-medium transition-colors group-hover:bg-[hsl(var(--nav-hover-bg)/0.85)] group-hover:text-[hsl(var(--nav-hover-text))]"
                 >
                   {tag}
                 </span>
