@@ -73,7 +73,9 @@ const ContactTab = () => {
               key={href}
               label={label}
               description={description}
-              icon={<Icon />}
+              icon={
+                <Icon className="w-5 h-5 text-[hsl(var(--nav-active-text))]" />
+              }
               onClick={() => {
                 window.open(href, "_blank");
               }}
