@@ -31,7 +31,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b overflow-hidden border-border bg-background/80 backdrop-blur-md">
+      <nav className="fixed absolute top-0 left-0 w-full z-50 border-b overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="container max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
           <span className="font-display text-lg font-bold tracking-tight">
             the <span className="text-primary text-teal-600">stellarium</span>
@@ -84,14 +84,14 @@ const Index = () => {
       </nav>
 
       {/* Content */}
-      <main className="relative z-10 container max-w-5xl mx-auto px-6 py-16">
+      <main className="z-10 container max-w-5xl mx-auto px-6 py-20 md:py-32">
         {activeTab === "home" && <HomeTab />}
         {activeTab === "projects" && <ProjectsTab />}
         {activeTab === "contact" && <ContactTab />}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
+      <footer className="fixed bottom-0 left-0 w-full z-50 border-t border-border py-8 overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="relative z-10 container max-w-5xl mx-auto px-6 text-center text-muted-foreground text-sm">
           © {new Date().getFullYear()} — Built with passion.
           <span className="absolute right-6 top-1/2 -translate-y-1/2">

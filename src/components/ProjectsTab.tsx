@@ -32,25 +32,12 @@ const projects = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
-
 const ProjectsTab = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
         Selected{" "}
@@ -61,21 +48,15 @@ const ProjectsTab = () => {
         new.
       </p>
 
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-      >
+      <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
           <motion.a
             key={project.title}
             href={project.link}
-            variants={item}
             whileHover={{
               y: -6,
               scale: 1.01,
-              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+              transition: { duration: 0.22, ease: [0.25, 0.1, 0.36, 1] },
             }}
             className="group block rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:border-[hsl(var(--nav-active-border))] hover:bg-[hsl(var(--nav-hover-bg)/0.55)] hover:shadow-[0_16px_34px_-20px_hsl(var(--nav-active-bg))]"
           >

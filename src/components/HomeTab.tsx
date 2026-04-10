@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const HomeTab = () => {
   return (
-    <motion.div>
+    <motion.div className="fixed">
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -32,8 +32,8 @@ const HomeTab = () => {
         transition={{ delay: 0.8 }}
         className="flex items-center gap-2 text-muted-foreground"
       >
-        <ArrowDown className="w-4 h-4 animate-bounce" />
         <span className="text-sm font-body">Explore my work</span>
+        <ArrowRight className="w-4 h-4 bounce-right" />
       </motion.div>
     </motion.div>
   );

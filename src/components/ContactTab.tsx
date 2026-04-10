@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, FileText, ExternalLink, User } from "lucide-react";
+import { Send, FileText, ExternalLink, User } from "lucide-react";
 
 const GithubIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -16,8 +16,8 @@ const LinkedinIcon = () => (
 const socials = [
   {
     icon: GithubIcon,
-    label: "github.com/yourhandle",
-    href: "https://github.com/yourhandle",
+    label: "github.com/akiesque",
+    href: "https://github.com/akiesque",
   },
   {
     icon: LinkedinIcon,
@@ -25,7 +25,7 @@ const socials = [
     href: "https://linkedin.com/in/yourprofile",
   },
   {
-    icon: Mail,
+    icon: Send,
     label: "hello@youremail.com",
     href: "mailto:hello@youremail.com",
   },
@@ -52,9 +52,9 @@ const ContactTab = () => {
           <User className="w-8 h-8 text-muted-foreground" />
         </div>
         <div>
-          <p className="text-lg font-semibold">Your Name</p>
+          <p className="text-lg font-semibold">Stephanie Fermil</p>
           <p className="text-sm text-muted-foreground">
-            Software Engineer · Singapore
+            Aspiring Data Scientist · Philippines
           </p>
         </div>
       </div>
@@ -66,16 +66,20 @@ const ContactTab = () => {
         </p>
         <div className="flex flex-col gap-2">
           {socials.map(({ icon: Icon, label, href }) => (
-            <a
+            <motion.a
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.25, ease: [0.25, 0.3, 0.36, 1] },
+              }}
               key={href}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-2.5 rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm"
+              className={`flex items-center gap-3 ${Icon === Send ? "px-2 py-2" : "px-4 py-2.5"} rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm`}
             >
               <Icon />
               {label}
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>
