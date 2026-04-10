@@ -1,40 +1,41 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Shroomseek",
     description:
-      "A full-stack online store with cart, checkout, and payment integration.",
-    tags: ["React", "Node.js", "Stripe"],
-    link: "#",
+      "A Resnet18 model that predicts the species of a mushroom based on its image.",
+    tags: ["Streamlit", "Python", "ResNet18"],
+    link: "https://github.com/akiesque/shroomseek",
   },
   {
-    title: "Task Management App",
+    title: "Cryptone",
     description:
-      "Collaborative task board with real-time updates and team workspaces.",
-    tags: ["TypeScript", "Firebase", "Tailwind"],
-    link: "#",
+      "A model that predicts the price of a cryptocurrency based on its news and social media sentiment.",
+    tags: ["Streamlit", "ARIMA-LSTM", "RoBERTa-FinBERT"],
+    link: "https://github.com/akiesque/cryptone",
   },
   {
-    title: "Weather Dashboard",
+    title: "Cafe.ly",
     description:
-      "Beautiful weather visualization with 7-day forecasts and location search.",
-    tags: ["React", "Chart.js", "API"],
-    link: "#",
+      "A coffee recommendation system that recommends coffee based on the user's preferences and current IP location.",
+    tags: ["Electron", "Python", "Flask", "OpenStreetMap API"],
+    link: "https://github.com/akiesque/cafe.ly",
   },
   {
-    title: "Portfolio Generator",
+    title: "LogIX",
     description:
-      "A CLI tool that scaffolds stunning developer portfolios from config files.",
-    tags: ["Node.js", "CLI", "Templates"],
-    link: "#",
+      "Finetuned a TrOCR model to recognize text from receipts and to streamline receipt logging processes of small to medium-sized businesses.",
+    tags: ["Python", "OpenCV", "Transformers"],
+    link: "https://github.com/akiesque/logix",
   },
 ];
 
 const ProjectsTab = () => {
   return (
     <motion.div
+      className="fixed max-w-5xl mx-auto -my-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}

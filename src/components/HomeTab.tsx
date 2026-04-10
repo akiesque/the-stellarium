@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 const HomeTab = () => {
@@ -12,7 +12,8 @@ const HomeTab = () => {
       >
         I build things
         <br />
-        for the <span className="text-primary">web</span>.
+        for the{" "}
+        <span className="text-primary animate-pulse text-teal-500">web</span>.
       </motion.h1>
 
       <motion.p

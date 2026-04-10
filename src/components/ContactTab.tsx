@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Send, FileText, ExternalLink, User } from "lucide-react";
+import ShimmerButton from "./ui/ShimmerButton";
 
 const GithubIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -16,18 +17,21 @@ const LinkedinIcon = () => (
 const socials = [
   {
     icon: GithubIcon,
-    label: "github.com/akiesque",
+    label: "GitHub",
+    description: "View my other projects",
     href: "https://github.com/akiesque",
   },
   {
     icon: LinkedinIcon,
-    label: "linkedin.com/in/yourprofile",
-    href: "https://linkedin.com/in/yourprofile",
+    label: "LinkedIn",
+    description: "Connect with me on LinkedIn",
+    href: "https://www.linkedin.com/in/chandrelle-stephanie-fermil-19171a1a1/",
   },
   {
     icon: Send,
-    label: "hello@youremail.com",
-    href: "mailto:hello@youremail.com",
+    label: "Email",
+    description: "Send me an email",
+    href: "mailto:stephanie.fermil@gmail.com",
   },
 ];
 
@@ -64,22 +68,16 @@ const ContactTab = () => {
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
           Socials
         </p>
-        <div className="flex flex-col gap-2">
-          {socials.map(({ icon: Icon, label, href }) => (
-            <motion.a
-              whileHover={{
-                scale: 1.02,
-                transition: { duration: 0.25, ease: [0.25, 0.3, 0.36, 1] },
+        <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-center justify-between w-full">
+          {socials.map(({ icon: Icon, label, description, href }) => (
+            <ShimmerButton
+              label={label}
+              description={description}
+              icon={<Icon />}
+              onClick={() => {
+                window.open(href, "_blank");
               }}
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-3 ${Icon === Send ? "px-2 py-2" : "px-4 py-2.5"} rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm`}
-            >
-              <Icon />
-              {label}
-            </motion.a>
+            />
           ))}
         </div>
       </div>
