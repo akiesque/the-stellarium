@@ -58,12 +58,11 @@ export const GALLERY_ITEMS: GalleryItem[] = [
 
 const Gallery = () => {
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden">
+    <div className="w-full space-y-10">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut", duration: 0.45 }}
-        className="shrink-0"
       >
         <h2 className="font-display text-2xl font-bold md:text-3xl">Gallery</h2>
         <p className="mt-1 max-w-lg text-muted-foreground">
@@ -72,9 +71,7 @@ const Gallery = () => {
         </p>
       </motion.div>
 
-      <div className="flex min-h-0 flex-1 overflow-hidden rounded-lg border border-border bg-secondary p-3 sm:p-4">
-        <Spinner items={GALLERY_ITEMS} />
-      </div>
+      <Spinner items={GALLERY_ITEMS} />
     </div>
   );
 };

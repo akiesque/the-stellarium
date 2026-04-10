@@ -30,14 +30,8 @@ const Index = () => {
     };
   }, [isDarkMode]);
 
-  const galleryLocked = activeTab === "gallery";
-
   return (
-    <div
-      className={
-        galleryLocked ? "h-[100dvh] overflow-hidden" : "min-h-screen"
-      }
-    >
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="fixed absolute top-0 left-0 w-full z-50 border-b overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="container max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
@@ -92,13 +86,7 @@ const Index = () => {
       </nav>
 
       {/* Content */}
-      <main
-        className={
-          galleryLocked
-            ? "z-10 container mx-auto flex min-h-0 max-h-[calc(100dvh-4rem-6.5rem)] max-w-5xl flex-col overflow-hidden px-6 pt-5 pb-6"
-            : "z-10 container mx-auto max-w-5xl px-6 py-20 md:py-32"
-        }
-      >
+      <main className="z-10 container mx-auto max-w-5xl px-6 py-20 md:py-32">
         {activeTab === "home" && <HomeTab />}
         {activeTab === "projects" && <ProjectsTab />}
         {activeTab === "gallery" && <Gallery />}

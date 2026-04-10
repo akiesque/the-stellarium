@@ -41,7 +41,6 @@ const ContactTab = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-xl"
     >
       <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
         Get in <span className="text-primary">touch</span>
@@ -68,9 +67,10 @@ const ContactTab = () => {
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
           Socials
         </p>
-        <div className="flex flex-col md:flex-row gap-6 md:gap-4 items-center justify-between w-full">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 md:items-stretch">
           {socials.map(({ icon: Icon, label, description, href }) => (
             <ShimmerButton
+              key={href}
               label={label}
               description={description}
               icon={<Icon />}

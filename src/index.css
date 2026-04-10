@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;1,400&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
 @import "tailwindcss";
 
@@ -34,8 +34,8 @@
 
     --radius: 0.75rem;
 
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Epilogue', sans-serif;
 
     --sidebar-background: 40 20% 97%;
     --sidebar-foreground: 220 20% 10%;

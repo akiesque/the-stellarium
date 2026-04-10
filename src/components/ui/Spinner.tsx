@@ -19,9 +19,7 @@ export default function Spinner({ items, className }: SpinnerProps) {
   const list = items?.length ? items : DEFAULT_GALLERY_ITEMS;
 
   return (
-    <div
-      className={`min-h-0 flex-1 overflow-y-auto overflow-x-hidden [scrollbar-width:thin] ${className ?? ""}`}
-    >
+    <div className={`w-full ${className ?? ""}`}>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((item) => (
           <CardContainer key={item.id} className="w-full">
