@@ -35,16 +35,16 @@ const projects = [
 const ProjectsTab = () => {
   return (
     <motion.div
-      className="relative w-full max-w-5xl mx-auto -my-10"
+      className="relative md:fixed md:z-10 w-full max-w-5xl mx-auto -my-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
-      <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
+      <h2 className="font-display text-3xl text-center md:text-center md:text-4xl font-bold m-2">
         Selected{" "}
         <span className="text-[hsl(var(--nav-active-text))]">Projects</span>
       </h2>
-      <p className="text-muted-foreground mb-10 max-w-lg">
+      <p className="text-muted-foreground text-center md:text-center mb-10 w-full">
         A curated collection of things I've built. Each one taught me something
         new.
       </p>
@@ -59,7 +59,7 @@ const ProjectsTab = () => {
               scale: 1.01,
               transition: { duration: 0.22, ease: [0.25, 0.1, 0.36, 1] },
             }}
-            className="group block rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:border-[hsl(var(--nav-active-border))] hover:bg-[hsl(var(--nav-hover-bg)/0.55)] hover:shadow-[0_16px_34px_-20px_hsl(var(--nav-active-bg))]"
+            className="group block rounded-lg border border-border bg-gradient-to-br from-[hsl(var(--nav-active-bg)/0.55)] via-[hsl(var(--card))] to-[hsl(var(--muted)/0.75)] p-6 transition-all duration-300 hover:border-[hsl(var(--nav-active-border))] hover:bg-[hsl(var(--nav-hover-bg)/0.75)] hover:shadow-[0_16px_34px_-20px_hsl(var(--nav-active-bg))]"
           >
             <div className="flex items-start justify-between mb-3">
               <h3 className="font-display text-xl font-semibold transition-colors group-hover:text-[hsl(var(--nav-active-text))]">

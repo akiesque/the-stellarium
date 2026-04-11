@@ -112,7 +112,7 @@ export const PORTFOLIO_TAB_CONFIG = [
     url: leftTurnFbx,
     camera: {
       position: [0, 1.12, 1.5],
-      target: [0.3, 1.2, 0],
+      target: [0.4, 1.2, 0],
       fov: 20,
     },
     orbit: {

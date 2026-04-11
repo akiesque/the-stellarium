@@ -93,9 +93,9 @@ const ContactTab = () => {
           Resume
         </p>
         <a
-          href="/resume.pdf"
+          href="/public/StephanieFermil_Resume.pdf"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
         >
           <FileText className="w-4 h-4" />

@@ -35,11 +35,11 @@ const HomeTab = () => {
         transition={{ delay: 0.5, duration: 0.6 }}
         className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl mb-10"
       >
-        I'm Stephanie Fermil, an aspiring data scientist passionate about
+        I'm <b>Stephanie Fermil</b>, an aspiring data scientist passionate about
         learning data science and creating impactful, artistic and efficient
-        solutions because{" "}
+        solutions because data deserves to{" "}
         <span className="text-primary text-teal-600">
-          data deserves to look pretty.
+          <b>look pretty</b>.
         </span>
       </motion.p>
 

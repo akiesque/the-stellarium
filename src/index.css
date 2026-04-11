@@ -56,6 +56,9 @@
     --button-border: 40 10% 78%;
     --button-bg: 0 0% 100%;
     --button-hover-bg: 160 40% 93%;
+
+    /* Grid page background (HSL, same format as --background) */
+    --grid-line: 40 12% 93%;
   }
 }
 
@@ -68,9 +71,34 @@
 
   body {
     font-family: var(--font-body);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    background-image: linear-gradient(
+        0deg,
+        transparent 24%,
+        hsl(var(--grid-line)) 25%,
+        hsl(var(--grid-line)) 26%,
+        transparent 25%,
+        transparent 75%,
+        hsl(var(--grid-line)) 75%,
+        hsl(var(--grid-line)) 76%,
+        transparent 77%,
+        transparent
+      ),
+      linear-gradient(
+        90deg,
+        transparent 24%,
+        hsl(var(--grid-line)) 25%,
+        hsl(var(--grid-line)) 26%,
+        transparent 27%,
+        transparent 74%,
+        hsl(var(--grid-line)) 75%,
+        hsl(var(--grid-line)) 76%,
+        transparent 77%,
+        transparent
+      );
+    background-size: 55px 55px;
   }
 
   body.dark-mode {
@@ -108,6 +136,8 @@
     --button-border: 220 15% 24%;
     --button-bg: 220 18% 12%;
     --button-hover-bg: 160 30% 18%;
+
+    --grid-line: 220 14% 16%;
 
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
