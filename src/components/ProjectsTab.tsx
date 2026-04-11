@@ -35,7 +35,7 @@ const projects = [
 const ProjectsTab = () => {
   return (
     <motion.div
-      className="fixed max-w-5xl mx-auto -my-10"
+      className="relative w-full max-w-5xl mx-auto -my-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}

@@ -1,12 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
-import NavBar from "./components/NavBar";
+import PortfolioPage from "./components/PortfolioPage";
+import VrmLabPage from "./components/VrmLabPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<NavBar />} />
+        <Route path="/" element={<PortfolioPage />} />
+        <Route path="/vrm-lab" element={<VrmLabPage />} />
       </Routes>
     </BrowserRouter>
   );

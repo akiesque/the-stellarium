@@ -1,10 +1,12 @@
 import {
   createContext,
+  createElement,
   useContext,
   useMemo,
   useRef,
   useState,
   type ComponentPropsWithoutRef,
+  type CSSProperties,
   type ElementType,
   type ReactNode,
 } from "react";
@@ -97,20 +99,17 @@ export function CardItem<T extends ElementType = "div">({
   style,
   ...rest
 }: CardItemProps<T>) {
-  const Component = (as ?? "div") as ElementType;
   const z =
     typeof translateZ === "string" ? Number.parseFloat(translateZ) || 0 : translateZ;
 
-  return (
-    <Component
-      {...(rest as object)}
-      className={className}
-      style={{
-        ...(style as object),
-        transform: `translateZ(${z}px)`,
-      }}
-    >
-      {children}
-    </Component>
+  const mergedStyle: CSSProperties = {
+    ...(style as CSSProperties),
+    transform: `translateZ(${z}px)`,
+  };
+
+  return createElement(
+    as ?? "div",
+    { ...(rest as object), className, style: mergedStyle },
+    children,
   );
 }
