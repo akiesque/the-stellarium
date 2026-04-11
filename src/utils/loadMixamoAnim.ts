@@ -44,8 +44,10 @@ export async function loadMixamoAnimation(
   const _quatA = new THREE.Quaternion();
 
   const motionHipsHeight = hips.position.y;
-  const vrmHipsHeight = vrm.humanoid.normalizedRestPose.hips.position[1];
-  const hipsPositionScale = vrmHipsHeight / motionHipsHeight;
+  const vrmHipsY =
+    vrm.humanoid?.normalizedRestPose?.hips?.position?.[1] ?? motionHipsHeight;
+  const hipsPositionScale =
+    motionHipsHeight !== 0 ? vrmHipsY / motionHipsHeight : 1;
 
   clip.tracks.forEach((track) => {
     const parts = track.name.split(".");

@@ -45,8 +45,11 @@ const ContactTab = () => {
       <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
         Get in <span className="text-primary">touch</span>
       </h2>
-      <p className="text-muted-foreground mb-10">
-        Open to opportunities, collaborations, and coffee chats.
+
+      <p className="text-xs text-muted-foreground mb-10 max-w-lg leading-relaxed border-l-2 border-border pl-3">
+        <span className="font-medium text-muted-foreground">
+          Open to opportunities, collaborations, and coffee chats.
+        </span>
       </p>
 
       {/* Avatar + name */}

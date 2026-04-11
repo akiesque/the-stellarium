@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router";
 import { motion } from "motion/react";
 import HomeTab from "./HomeTab";
 import ProjectsTab from "./ProjectsTab";
@@ -71,12 +70,6 @@ export default function PortfolioPage() {
                 </motion.button>
               ))}
             </div>
-            <Link
-              to="/vrm-lab"
-              className="text-sm font-medium px-3 py-2 rounded-lg text-[hsl(var(--nav-text))] hover:text-[hsl(var(--nav-hover-text))] hover:bg-[hsl(var(--nav-hover-bg)/0.5)] transition-colors shrink-0"
-            >
-              VRM lab
-            </Link>
           </>
         );
       }}

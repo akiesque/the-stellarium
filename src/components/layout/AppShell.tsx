@@ -6,17 +6,14 @@ type AppShellProps = {
   /** Right side of the nav: tabs, route links, etc. Receives dark mode for styling that depends on it. */
   navRight: (ctx: { isDarkMode: boolean }) => ReactNode;
   children: ReactNode;
-  /** Passed to `VRMBackground` so the 3D camera can react to portfolio tabs (optional on other routes). */
+  /** Passed to `VRMBackground` so the 3D camera can react to portfolio tabs. */
   backgroundTab?: string;
-  /** Skip the portfolio 3D layer (e.g. VRM lab already has its own Canvas). */
-  hideVrmBackground?: boolean;
 };
 
 export default function AppShell({
   navRight,
   children,
   backgroundTab,
-  hideVrmBackground,
 }: AppShellProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -29,9 +26,7 @@ export default function AppShell({
 
   return (
     <div className="min-h-screen">
-      {!hideVrmBackground ? (
-        <VRMBackground activeTab={backgroundTab} />
-      ) : null}
+      <VRMBackground activeTab={backgroundTab} />
       <nav className="fixed absolute top-0 left-0 w-full z-50 border-b overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="container max-w-5xl mx-auto px-6 flex items-center justify-between h-16 gap-4">
           <span className="font-display text-lg font-bold tracking-tight shrink-0">
