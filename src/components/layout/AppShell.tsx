@@ -50,7 +50,7 @@ export default function AppShell({
 
       {children}
 
-      <footer className="relative md:fixed bottom-0 left-0 w-full z-50 border-t border-border py-10 md:py-4 overflow-hidden border-border bg-background/80 backdrop-blur-md">
+      <footer className="relative md:fixed bottom-0 left-0 w-full z-50 border-t border-border py-6 md:py-8 overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="relative z-10 container max-w-5xl mx-auto px-6 text-center text-muted-foreground text-sm">
           © {new Date().getFullYear()} — Stephanie Fermil
           <span className="absolute right-6 top-1/2 -translate-y-1/2">
