@@ -8,7 +8,7 @@ const HomeTab = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="text-xs uppercase tracking-widest text-muted-foreground mb-3"
+        className="text-sm md:text-xs uppercase tracking-widest text-muted-foreground mb-3"
       >
         Hello! Welcome to the{" "}
         <span className="text-primary text-teal-500">stellarium</span>.
@@ -20,13 +20,8 @@ const HomeTab = () => {
         className="font-display text-5xl md:text-7xl font-bold leading-tight mb-4"
       >
         I make data
-        <br />{" "}
-        <span className="text-primary animate-pulse text-teal-500">
-          pretty
-        </span>{" "}
-        & {""}
-        <span className="text-primary animate-pulse text-teal-500">useful</span>
-        .
+        <br /> <span className="text-primary text-teal-500">pretty</span> & {""}
+        <span className="text-primary text-teal-500">useful</span>.
       </motion.h1>
 
       <motion.p

@@ -5,7 +5,6 @@ import VRMBackground from "../VRMBackground";
 type AppShellProps = {
   /** Right side of the nav: tabs, route links, etc. Receives dark mode for styling that depends on it. */
   navRight: (ctx: { isDarkMode: boolean }) => ReactNode;
-  /** Renders in a slim strip **below** the nav’s bottom border (same width / z-index as the bar). */
   belowNav?: ReactNode;
   children: ReactNode;
   /** Passed to `VRMBackground` so the 3D camera can react to portfolio tabs. */
@@ -51,9 +50,9 @@ export default function AppShell({
 
       {children}
 
-      <footer className="fixed bottom-0 left-0 w-full z-50 border-t border-border py-8 overflow-hidden border-border bg-background/80 backdrop-blur-md">
+      <footer className="relative md:fixed bottom-0 left-0 w-full z-50 border-t border-border py-10 md:py-4 overflow-hidden border-border bg-background/80 backdrop-blur-md">
         <div className="relative z-10 container max-w-5xl mx-auto px-6 text-center text-muted-foreground text-sm">
-          © {new Date().getFullYear()} — Built with passion.
+          © {new Date().getFullYear()} — Stephanie Fermil
           <span className="absolute right-6 top-1/2 -translate-y-1/2">
             <DarkMode
               onClick={() => setIsDarkMode((prev) => !prev)}
