@@ -1,75 +1,32 @@
-# React + TypeScript + Vite
+# the-stellarium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is Stephanie Fermil's portfolio site built with **React**, **TypeScript**, and **Vite**. The layout pairs a full-screen **React Three Fiber** scene (VRM silhouette, tab-driven camera and clips, spring-bone hair motion) with a light/dark themed UI (**Tailwind CSS v4**, **Motion**).
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19, React Compiler (Babel), React Router 7
+- Vite 8, TypeScript 6
+- Three.js, `@react-three/fiber`, `@pixiv/three-vrm` (+ VRMA / Mixamo clips)
+- GSAP (camera panning), Motion (components)
 
-## React Compiler
+## Scripts
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+| Command           | Description                     |
+| ----------------- | ------------------------------- |
+| `npm run dev`     | Start dev server with HMR       |
+| `npm run build`   | Typecheck + production bundle   |
+| `npm run preview` | Serve the `dist` output locally |
+| `npm run lint`    | Run ESLint                      |
 
-Note: This will impact Vite dev & build performances.
+## Local setup
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the URL Vite prints (usually `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Assets
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Large binaries (e.g. `.vrm`, `.vrma`, `.fbx`) live under `src/assets/VRM/` and are imported as static URLs. Other components were sourced from uiverse.io.
