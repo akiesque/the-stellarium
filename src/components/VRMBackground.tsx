@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { Html } from "@react-three/drei";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import * as THREE from "three";
@@ -32,12 +33,18 @@ import {
   restoreVrmSilhouetteMaterials,
 } from "./ui/VRMShade";
 import { applyVrmSpringWindForces } from "./ui/WindEffect";
+import Loader from "./ui/Loader";
 
 type VRMBackgroundProps = {
   activeTab?: string;
 };
 
 const PORTFOLIO_SILHOUETTE_COLOR = "#0d9488";
+
+/** `Html` Y offset inside framed VRM group (feet at y≈0) — roughly head height. */
+const PORTFOLIO_LOADER_Y_MODEL_SPACE = 1.48;
+/** Before the mesh exists (Suspense), world-space Y near camera look-at for home tab. */
+const PORTFOLIO_LOADER_Y_PRELOAD = 1.14;
 
 const CAMERA_TWEEN = {
   duration: 1.15,
@@ -158,6 +165,26 @@ type PortfolioVrmProps = {
   activeTab?: string;
 };
 
+/** DOM via drei `Html` — safe inside R3F (unlike raw SVG in Canvas). */
+function PortfolioVrmLoadFallback({
+  positionY = PORTFOLIO_LOADER_Y_MODEL_SPACE,
+}: {
+  positionY?: number;
+}) {
+  return (
+    <Html
+      center
+      transform={false}
+      position={[0, positionY, 0]}
+      occlude={false}
+      distanceFactor={0.48}
+      style={{ pointerEvents: "none" }}
+    >
+      <Loader />
+    </Html>
+  );
+}
+
 function PortfolioVrm({ activeTab }: PortfolioVrmProps) {
   const gltf = useLoader(GLTFLoader, minamiUrl, (loader) => {
     loader.register((parser) => new VRMLoaderPlugin(parser));
@@ -178,6 +205,8 @@ function PortfolioVrm({ activeTab }: PortfolioVrmProps) {
     PortfolioTabId,
     THREE.AnimationClip
   > | null>(null);
+
+  const clipsReady = clipsByTab !== null;
 
   useLayoutEffect(() => {
     const root = gltf.scene;
@@ -201,14 +230,14 @@ function PortfolioVrm({ activeTab }: PortfolioVrmProps) {
   }, [gltf.scene, silhouetteMaterial]);
 
   useEffect(() => {
-    if (!vrm) return;
+    if (!vrm || !clipsReady) return;
     const mixer = new THREE.AnimationMixer(gltf.scene);
     mixerRef.current = mixer;
     return () => {
       mixer.stopAllAction();
       mixerRef.current = null;
     };
-  }, [vrm, gltf.scene]);
+  }, [vrm, gltf.scene, clipsReady]);
 
   useEffect(() => {
     if (!vrm) return;
@@ -273,6 +302,7 @@ function PortfolioVrm({ activeTab }: PortfolioVrmProps) {
   }, [activeTab, clipsByTab]);
 
   useFrame((state, delta) => {
+    if (!clipsReady) return;
     const mixer = mixerRef.current;
     if (mixer) mixer.update(delta);
     if (vrm) {
@@ -284,7 +314,8 @@ function PortfolioVrm({ activeTab }: PortfolioVrmProps) {
 
   return (
     <group ref={rootWrapRef}>
-      <primitive object={gltf.scene} />
+      <primitive object={gltf.scene} visible={clipsReady} />
+      {!clipsReady ? <PortfolioVrmLoadFallback /> : null}
     </group>
   );
 }
@@ -295,7 +326,11 @@ function BackgroundScene({ activeTab }: VRMBackgroundProps) {
       <PortfolioPerspectiveCamera activeTab={activeTab} />
       <ambientLight intensity={0.45} />
       <directionalLight position={[2.5, 5, 3]} intensity={0.85} />
-      <Suspense fallback={null}>
+      <Suspense
+        fallback={
+          <PortfolioVrmLoadFallback positionY={PORTFOLIO_LOADER_Y_PRELOAD} />
+        }
+      >
         <PortfolioVrm activeTab={activeTab} />
       </Suspense>
     </>
