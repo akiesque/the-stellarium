@@ -96,6 +96,7 @@ const ContactTab = () => {
         </p>
         <a
           href="/StephanieFermil_Resume.pdf"
+          download="StephanieFermil_Resume.pdf"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
