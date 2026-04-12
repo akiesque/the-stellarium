@@ -19,14 +19,14 @@ const projects = [
   {
     title: "Cafe.ly",
     description:
-      "A coffee recommendation system that recommends coffee based on the user's preferences and current IP location.",
+      "A coffee recommendation system that recommends coffee based on the user's preferences and current location.",
     tags: ["Electron", "Python", "Flask", "OpenStreetMap API"],
     link: "https://github.com/akiesque/cafe.ly",
   },
   {
     title: "LogIX",
     description:
-      "Finetuned a TrOCR model to recognize text from receipts and to streamline receipt logging processes of small to medium-sized businesses.",
+      "Finetuned a TrOCR model to recognize text from receipts and to reduce manual data entry of CMC Lighting De Arte Inc.",
     tags: ["Python", "OpenCV", "Transformers"],
     link: "https://github.com/akiesque/logix",
   },
@@ -41,7 +41,7 @@ const ProjectsTab = () => {
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <h2 className="font-display text-3xl text-center md:text-center md:text-4xl font-bold m-2">
-        Selected{" "}
+        Highlighted{" "}
         <span className="text-[hsl(var(--nav-active-text))]">Projects</span>
       </h2>
       <p className="text-muted-foreground text-center md:text-center mb-10 w-full">
@@ -51,9 +51,11 @@ const ProjectsTab = () => {
 
       <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
-          <motion.a
+          <motion.button
             key={project.title}
-            href={project.link}
+            onClick={() => {
+              window.open(project.link, "_blank");
+            }}
             whileHover={{
               y: -6,
               scale: 1.01,
@@ -67,7 +69,7 @@ const ProjectsTab = () => {
               </h3>
               <ExternalLink className="w-4 h-4 text-muted-foreground transition-colors group-hover:text-[hsl(var(--nav-active-text))] shrink-0 mt-1" />
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            <p className="text-left text-muted-foreground text-sm leading-relaxed mb-4">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2">
@@ -80,7 +82,7 @@ const ProjectsTab = () => {
                 </span>
               ))}
             </div>
-          </motion.a>
+          </motion.button>
         ))}
       </motion.div>
     </motion.div>

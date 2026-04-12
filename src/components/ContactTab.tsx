@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Send, FileText, ExternalLink, User } from "lucide-react";
+import { Send, FileText, ExternalLink } from "lucide-react";
 import ShimmerButton from "./ui/ShimmerButton";
 
 const GithubIcon = () => (
@@ -46,21 +46,23 @@ const ContactTab = () => {
         Get in <span className="text-primary">touch</span>
       </h2>
 
-      <p className="text-xs text-muted-foreground mb-10 max-w-lg leading-relaxed border-l-2 border-border pl-3">
+      <p className="text-muted-foreground mb-10 max-w-lg leading-relaxed border-l-2 border-border pl-3">
         <span className="font-medium text-muted-foreground">
           Open to opportunities, collaborations, and coffee chats.
         </span>
       </p>
 
-      {/* Avatar + name */}
       <div className="flex items-center gap-5 mb-10">
         <div className="w-20 h-20 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
-          <User className="w-8 h-8 text-muted-foreground" />
+          <img
+            src="/public/profile.jpg"
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
         <div>
           <p className="text-lg font-semibold">Stephanie Fermil</p>
           <p className="text-sm text-muted-foreground">
-            Aspiring Data Scientist · Philippines
+            Aspiring Data Scientist · Singapore
           </p>
         </div>
       </div>
@@ -90,7 +92,7 @@ const ContactTab = () => {
       {/* Resume */}
       <div>
         <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
-          Resume
+          Want to hire me?
         </p>
         <a
           href="/public/StephanieFermil_Resume.pdf"
