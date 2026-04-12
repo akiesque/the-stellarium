@@ -55,7 +55,7 @@ const ContactTab = () => {
       <div className="flex items-center gap-5 mb-10">
         <div className="w-20 h-20 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
           <img
-            src="/public/profile.jpg"
+            src="/profile.jpg"
             className="w-full h-full object-cover rounded-full"
           />
         </div>
@@ -95,7 +95,7 @@ const ContactTab = () => {
           Want to hire me?
         </p>
         <a
-          href="/public/StephanieFermil_Resume.pdf"
+          href="/StephanieFermil_Resume.pdf"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
