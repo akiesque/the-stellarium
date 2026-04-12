@@ -1,6 +1,11 @@
 import { useEffect, useState, type ReactNode } from "react";
 import DarkMode from "../ui/DarkMode";
 import VRMBackground from "../VRMBackground";
+import { Sparkle } from "lucide-react";
+
+// AppShell is the main layout component for the portfolio page
+// It contains the navigation bar, the content, and the footer
+// It also contains the 3D background and the dark mode toggle
 
 type AppShellProps = {
   /** Right side of the nav: tabs, route links, etc. Receives dark mode for styling that depends on it. */
@@ -33,8 +38,12 @@ export default function AppShell({
         <nav className="border-b border-border bg-background/80 backdrop-blur-md">
           <div className="container max-w-5xl mx-auto px-6 flex items-center justify-between h-16 gap-4 overflow-hidden">
             <span className="font-display text-lg font-bold tracking-tight shrink-0">
-              the <span className="text-primary text-teal-600">stellarium</span>
-              <span className="text-primary">.</span>
+              <Sparkle className="w-4 h-4 text-primary text-teal-600 inline-block mr-2" />
+              the{" "}
+              <span className="text-primary text-teal-600 inline-block">
+                stellarium
+              </span>
+              <span className="text-primary inline-block">.</span>
             </span>
             <div className="flex items-center gap-2 min-w-0 justify-end">
               {navRight({ isDarkMode })}

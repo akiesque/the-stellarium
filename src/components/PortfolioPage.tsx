@@ -1,3 +1,5 @@
+// NavBar behavior and tabs are under this section
+
 import {
   useCallback,
   useEffect,
