@@ -53,7 +53,7 @@ function NavArrowBelowBar({
   }, [measure]);
 
   return (
-    <div ref={stripRef} className="absolute h-7 w-full overflow-visible">
+    <div ref={stripRef} className="absolute h-8 w-full overflow-visible">
       {centerX != null ? (
         <motion.div
           className="pointer-events-none absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
