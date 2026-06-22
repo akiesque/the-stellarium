@@ -20,14 +20,14 @@ const projects = [
     title: "Cafe.ly",
     description:
       "A coffee recommendation system that recommends coffee based on the user's preferences and current location.",
-    tags: ["Electron", "Python", "Flask", "OpenStreetMap API"],
+    tags: ["Electron", "Python", "Scikit-learn", "OpenStreetMap API"],
     link: "https://github.com/akiesque/cafe.ly",
   },
   {
     title: "LogIX",
     description:
       "Finetuned a TrOCR model to recognize text from receipts and to reduce manual data entry of CMC Lighting De Arte Inc.",
-    tags: ["Python", "OpenCV", "Transformers"],
+    tags: ["Python", "OpenCV", "Transformers", "PyTorch"],
     link: "https://github.com/akiesque/logix",
   },
 ];
@@ -35,7 +35,7 @@ const projects = [
 const ProjectsTab = () => {
   return (
     <motion.div
-      className="relative md:fixed md:z-10 w-full max-w-5xl mx-auto -my-5 md:-my-10"
+      className="relative w-full max-w-5xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ease: "easeInOut", duration: 0.5 }}

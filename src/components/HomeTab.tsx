@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 const HomeTab = () => {
   return (
-    <motion.div className="relative md:fixed md:z-10">
+    <motion.div className="relative w-full">
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -11,7 +11,7 @@ const HomeTab = () => {
         className="text-sm md:text-xs uppercase tracking-widest text-muted-foreground mb-3"
       >
         Hello! Welcome to the{" "}
-        <span className="text-primary text-teal-500">stellarium</span>.
+        <span className="text-primary text-teal-500">code atelier</span>.
       </motion.p>
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
