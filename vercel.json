@@ -13,7 +13,7 @@
       "destination": "/assets/$1"
     },
     {
-      "source": "/data-science/(.*)",
+      "source": "/data-science/((?!.*\\.).*)",
       "destination": "/index.html"
     },
     {
