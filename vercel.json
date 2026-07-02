@@ -1,5 +1,12 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/data-science",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/data-science/assets/(.*)",
