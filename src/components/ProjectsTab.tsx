@@ -41,7 +41,7 @@ const ProjectsTab = () => {
       transition={{ ease: "easeInOut", duration: 0.5 }}
     >
       <h2 className="font-display text-3xl text-center md:text-center md:text-4xl font-bold m-2">
-        Highlighted{" "}
+        Main{" "}
         <span className="text-[hsl(var(--nav-active-text))]">Projects</span>
       </h2>
       <p className="text-muted-foreground text-center md:text-center mb-10 w-full">

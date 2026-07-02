@@ -4,7 +4,7 @@ import PortfolioPage from "./components/PortfolioPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/data-science">
       <Routes>
         <Route path="/" element={<PortfolioPage />} />
       </Routes>

@@ -162,3 +162,27 @@
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
+
+@keyframes slide-left {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -10px;
+  }
+}
+
+.animate-stripes {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 40 L40 0 M-10 10 L10 -10 M30 50 L50 30' stroke='%23C1C7C2' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 10px 10px;
+  animation: slide-left 1s linear infinite;
+}
+
+.animate-stripes.dark-mode {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 40 L40 0 M-10 10 L10 -10 M30 50 L50 30' stroke='%23E4EBE6' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.custom-shape {
+  clip-path: ellipse(47.83% 40.49% at 47.82% 45.11%);
+  shape-outside: ellipse(50% 50% at 50% 50%);
+}

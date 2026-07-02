@@ -1,13 +1,11 @@
 # the-stellarium
 
-This is Stephanie Fermil's portfolio site built with **React**, **TypeScript**, and **Vite**. The layout pairs a full-screen **React Three Fiber** scene (VRM silhouette, tab-driven camera and clips, spring-bone hair motion) with a light/dark themed UI (**Tailwind CSS v4**, **Motion**).
+This is Stephanie Fermil's portfolio site built with **React**, **TypeScript**, and **Vite** with a light/dark themed UI (**Tailwind CSS v4**, **Motion**).
 
 ## Tech stack
 
 - React 19, React Compiler (Babel), React Router 7
 - Vite 8, TypeScript 6
-- Three.js, `@react-three/fiber`, `@pixiv/three-vrm` (+ VRMA / Mixamo clips)
-- GSAP (camera panning), Motion (components)
 
 ## Scripts
 

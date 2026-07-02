@@ -1,31 +1,22 @@
-// NavBar behavior and tabs are under this section
-
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import HomeTab from "./HomeTab";
 import ProjectsTab from "./ProjectsTab";
 import ContactTab from "./ContactTab";
+import AboutMeTab from "./AboutMeTab";
 // import Gallery from "./Gallery";
 import { House, Library, MessageCircle } from "lucide-react";
 import AppShell from "./layout/AppShell";
 
 const tabs = [
   { id: "home", label: "Home", icon: House },
+  { id: "about", label: "About Me", icon: House },
   { id: "projects", label: "Projects", icon: Library },
   // { id: "gallery", label: "Gallery", icon: Images },
-  { id: "contact", label: "Contact Me", icon: MessageCircle },
+  { id: "contact", label: "Contact", icon: MessageCircle },
 ] as const;
 
-const DEFAULT_NAV_OFFSET_PX = 50;
-const SNAP_LOCK_MS = 480;
-
 type TabId = (typeof tabs)[number]["id"];
-
-const NAV_OFFSET_BY_TAB: Record<TabId, number> = {
-  home: 160,
-  projects: 50,
-  contact: 50,
-};
 
 type TabButtonRefsRef = { current: Partial<Record<TabId, HTMLButtonElement>> };
 
@@ -81,40 +72,34 @@ export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
   const [hoveredTab, setHoveredTab] = useState<TabId | null>(null);
   const [hasEntered, setHasEntered] = useState<Record<TabId, boolean>>({
-    home: false,
-    projects: false,
-    contact: false,
+    home: true,
+    about: true,
+    projects: true,
+    contact: true,
   });
   const tabBtnRefs = useRef<Partial<Record<TabId, HTMLButtonElement>>>({});
   const sectionRefs = useRef<Partial<Record<TabId, HTMLElement>>>({});
-  const isSnappingRef = useRef(false);
-  const snapTargetRef = useRef<TabId | null>(null);
-
-  const getNavOffset = (tabId: TabId): number => {
-    return NAV_OFFSET_BY_TAB[tabId] ?? DEFAULT_NAV_OFFSET_PX;
-  };
 
   const getClosestTabToViewportAnchor = (): TabId => {
-    const viewportAnchorY = window.innerHeight * 0.33;
-    let closestTab: TabId = tabs[0].id;
-    let closestDistance = Number.POSITIVE_INFINITY;
+    const activationLineY = window.innerHeight * 0.28;
+    let currentTab: TabId | null = null;
+    let currentTop = Number.NEGATIVE_INFINITY;
 
     tabs.forEach((tab) => {
       const section = sectionRefs.current[tab.id];
       if (!section) return;
 
       const rect = section.getBoundingClientRect();
-      const sectionCenterY = rect.top + rect.height / 2;
-      const distance = Math.abs(sectionCenterY - viewportAnchorY);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestTab = tab.id;
+      if (rect.top <= activationLineY && rect.top > currentTop) {
+        currentTop = rect.top;
+        currentTab = tab.id;
       }
     });
 
-    return closestTab;
+    return currentTab ?? tabs[0].id;
   };
 
+  // Keep intersection observer so navbar items accurately update on free scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -137,10 +122,8 @@ export default function PortfolioPage() {
           return changed ? next : prev;
         });
 
-        if (!isSnappingRef.current) {
-          const nextTab = getClosestTabToViewportAnchor();
-          setActiveTab((prev) => (prev === nextTab ? prev : nextTab));
-        }
+        const nextTab = getClosestTabToViewportAnchor();
+        setActiveTab((prev) => (prev === nextTab ? prev : nextTab));
       },
       {
         root: null,
@@ -164,50 +147,8 @@ export default function PortfolioPage() {
     const section = sectionRefs.current[id];
     if (!section) return;
 
-    const y =
-      section.getBoundingClientRect().top + window.scrollY - getNavOffset(id);
-    window.scrollTo({ top: y, behavior });
+    section.scrollIntoView({ behavior, block: "start" });
   };
-
-  useEffect(() => {
-    const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) < 22) return;
-      if (isSnappingRef.current) {
-        event.preventDefault();
-        return;
-      }
-
-      const nearestTab = getClosestTabToViewportAnchor();
-      const nearestIndex = tabs.findIndex((tab) => tab.id === nearestTab);
-      if (nearestIndex < 0) return;
-
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const nextIndex = Math.min(
-        Math.max(nearestIndex + direction, 0),
-        tabs.length - 1,
-      );
-
-      if (nextIndex === nearestIndex) return;
-
-      event.preventDefault();
-      isSnappingRef.current = true;
-      const nextTab = tabs[nextIndex].id;
-      snapTargetRef.current = nextTab;
-      setActiveTab(nextTab);
-      setHoveredTab(null);
-      handleTabClick(nextTab, "smooth");
-
-      window.setTimeout(() => {
-        isSnappingRef.current = false;
-        snapTargetRef.current = null;
-        const settledTab = getClosestTabToViewportAnchor();
-        setActiveTab((prev) => (prev === settledTab ? prev : settledTab));
-      }, SNAP_LOCK_MS);
-    };
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, []);
 
   return (
     <AppShell
@@ -215,9 +156,7 @@ export default function PortfolioPage() {
         <NavArrowBelowBar activeTab={activeTab} tabBtnRefs={tabBtnRefs} />
       }
       navRight={({ isDarkMode }) => {
-        const highlightedTab = isSnappingRef.current
-          ? activeTab
-          : (hoveredTab ?? activeTab);
+        const highlightedTab = hoveredTab ?? activeTab;
         return (
           <>
             <div
@@ -249,7 +188,7 @@ export default function PortfolioPage() {
                     {highlightedTab === tab.id && (
                       <motion.div
                         layoutId="tabHighlight"
-                        className="absolute inset-0 rounded-lg border"
+                        className="absolute inset-0 rounded-sm border"
                         style={{
                           backgroundColor:
                             activeTab === tab.id
@@ -281,7 +220,7 @@ export default function PortfolioPage() {
             if (el) sectionRefs.current.home = el;
             else delete sectionRefs.current.home;
           }}
-          className="scroll-mt-32 min-h-[72vh] py-6 md:py-10"
+          className="scroll-mt-16 min-h-[20vh] py-6 md:py-15"
           initial={{ opacity: 0 }}
           animate={hasEntered.home ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
@@ -290,12 +229,26 @@ export default function PortfolioPage() {
         </motion.section>
 
         <motion.section
+          id="about"
+          ref={(el) => {
+            if (el) sectionRefs.current.about = el;
+            else delete sectionRefs.current.about;
+          }}
+          className="scroll-mt-16 md:scroll-mt-12 min-h-[50vh] py-6 md:py-5"
+          initial={{ opacity: 0 }}
+          animate={hasEntered.about ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <AboutMeTab />
+        </motion.section>
+
+        <motion.section
           id="projects"
           ref={(el) => {
             if (el) sectionRefs.current.projects = el;
             else delete sectionRefs.current.projects;
           }}
-          className="scroll-mt-32 min-h-[72vh] py-6 md:py-10"
+          className="scroll-mt-16 min-h-[250px] py-6 md:py-10"
           initial={{ opacity: 0 }}
           animate={hasEntered.projects ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
@@ -309,15 +262,13 @@ export default function PortfolioPage() {
             if (el) sectionRefs.current.contact = el;
             else delete sectionRefs.current.contact;
           }}
-          className="scroll-mt-32 min-h-[72vh] py-6 md:py-10"
+          className="scroll-mt-16 min-h-[100vh] py-6 md:py-10"
           initial={{ opacity: 0 }}
           animate={hasEntered.contact ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
           <ContactTab />
         </motion.section>
-
-        {/* <section id="gallery"> <Gallery /> </section> */}
       </main>
     </AppShell>
   );

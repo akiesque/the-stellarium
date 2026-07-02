@@ -36,10 +36,12 @@ const socials = [
 ];
 
 const ContactTab = () => {
+  const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <motion.div
       className="relative w-full max-w-5xl mx-auto"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -56,7 +58,7 @@ const ContactTab = () => {
       <div className="flex items-center gap-5 mb-10">
         <div className="w-20 h-20 rounded-full bg-secondary border border-border flex items-center justify-center shrink-0">
           <img
-            src="/profile.jpg"
+            src={`${baseUrl}profile.jpg`}
             className="w-full h-full object-cover rounded-full"
           />
         </div>
@@ -96,7 +98,7 @@ const ContactTab = () => {
           Want to hire me?
         </p>
         <a
-          href="/StephanieFermil_Resume.pdf"
+          href={`${baseUrl}StephanieFermil_Resume.pdf`}
           download="StephanieFermil_Resume.pdf"
           target="_blank"
           rel="noreferrer"
