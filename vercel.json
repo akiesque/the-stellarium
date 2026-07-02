@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/data-science/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/data-science",
+      "destination": "/index.html"
+    }
+  ]
+}
