@@ -9,15 +9,11 @@
   ],
   "rewrites": [
     {
-      "source": "/data-science/assets/(.*)",
-      "destination": "/assets/$1"
+      "source": "/data-science/assets/:path*",
+      "destination": "/assets/:path*"
     },
     {
-      "source": "/data-science/((?!.*\\.).*)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/data-science",
+      "source": "/data-science/:path*",
       "destination": "/index.html"
     }
   ]
