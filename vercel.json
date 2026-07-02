@@ -1,5 +1,10 @@
 {
+  "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/data-science/assets/(.*)",
+      "destination": "/assets/$1"
+    },
     {
       "source": "/data-science/(.*)",
       "destination": "/index.html"
