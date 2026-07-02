@@ -1,23 +1,7 @@
 {
-  "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/data-science",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
-      "source": "/data-science/assets/:path*",
-      "destination": "/assets/:path*"
-    },
-    {
-      "source": "/data-science",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/data-science/:path*",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
