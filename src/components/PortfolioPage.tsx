@@ -55,7 +55,7 @@ function NavArrowBelowBar({
   }, [activeTab, tabBtnRefs]);
 
   return (
-    <div ref={stripRef} className="absolute h-8 w-full overflow-visible">
+    <div ref={stripRef} className="absolute h-1 w-full overflow-visible">
       {centerX != null ? (
         <motion.div
           className="pointer-events-none absolute top-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -220,7 +220,7 @@ export default function PortfolioPage() {
             if (el) sectionRefs.current.home = el;
             else delete sectionRefs.current.home;
           }}
-          className="scroll-mt-16 min-h-[20vh] py-6 md:py-15"
+          className="scroll-mt-32 min-h-[100vh] py-6 md:py-1"
           initial={{ opacity: 0 }}
           animate={hasEntered.home ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
