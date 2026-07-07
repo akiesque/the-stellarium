@@ -27,4 +27,4 @@ Then open the URL Vite prints (usually `http://localhost:5173`).
 
 ## Assets
 
-Large binaries (e.g. `.vrm`, `.vrma`, `.fbx`) live under `src/assets/VRM/` and are imported as static URLs. Other components were sourced from uiverse.io.
+Other components were sourced from uiverse.io.
